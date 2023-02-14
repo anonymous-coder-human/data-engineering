@@ -3,8 +3,11 @@
 ## Pre-flight instructions
 To run this code download pandas from pip and then run the main.py file
 (The exploratory.py file is unnecessary and was a tool I used to explore the data.)
+
 `pip install pandas>=1.3.1`
+
 `python3 main.py`
+
 The output will be stored in the directory where the main.py file is run.
 The main.py script was successfully tested with python 3.10 and pandas 1.5.3 as well as python 3.7 and pandas 1.3.1
 Because of that It is very likely that it will run with many other combinations of python 3 and pandas
