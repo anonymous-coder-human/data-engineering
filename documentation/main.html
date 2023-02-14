@@ -99,8 +99,8 @@ def transform_cons_data(cons: pd.DataFrame, cons_email: pd.DataFrame, cons_sub: 
     cons_all.rename(columns={&#39;create_dt&#39;: &#39;created_dt_orig&#39;}, inplace=True)
     cons_all.rename(columns={&#39;source&#39;: &#39;code&#39;,
                              &#39;isunsub&#39;: &#39;is_unsub&#39;,
-                             &#39;create_dt_email&#39;: &#39;created_dt&#39;,
-                             &#39;modified_dt_sub&#39;: &#39;updated_dt&#39;
+                             &#39;created_dt_orig&#39;: &#39;created_dt&#39;,
+                             &#39;modified_dt&#39;: &#39;updated_dt&#39;
                              }, inplace=True)
     cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].fillna(False)
     cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].astype(bool)
@@ -362,8 +362,8 @@ After that there is basic renaming, imputing NaN is_unsub to False, and selectin
     cons_all.rename(columns={&#39;create_dt&#39;: &#39;created_dt_orig&#39;}, inplace=True)
     cons_all.rename(columns={&#39;source&#39;: &#39;code&#39;,
                              &#39;isunsub&#39;: &#39;is_unsub&#39;,
-                             &#39;create_dt_email&#39;: &#39;created_dt&#39;,
-                             &#39;modified_dt_sub&#39;: &#39;updated_dt&#39;
+                             &#39;created_dt_orig&#39;: &#39;created_dt&#39;,
+                             &#39;modified_dt&#39;: &#39;updated_dt&#39;
                              }, inplace=True)
     cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].fillna(False)
     cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].astype(bool)

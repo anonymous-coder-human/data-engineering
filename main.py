@@ -73,8 +73,8 @@ def transform_cons_data(cons: pd.DataFrame, cons_email: pd.DataFrame, cons_sub: 
     cons_all.rename(columns={'create_dt': 'created_dt_orig'}, inplace=True)
     cons_all.rename(columns={'source': 'code',
                              'isunsub': 'is_unsub',
-                             'create_dt_email': 'created_dt',
-                             'modified_dt_sub': 'updated_dt'
+                             'created_dt_orig': 'created_dt',
+                             'modified_dt': 'updated_dt'
                              }, inplace=True)
     cons_all['is_unsub'] = cons_all['is_unsub'].fillna(False)
     cons_all['is_unsub'] = cons_all['is_unsub'].astype(bool)
