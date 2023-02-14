@@ -11,8 +11,8 @@ Because of that It is very likely that it will run with many other combinations 
 
 ## Documentation
 There is a documentation file for main.py in the documentation folder called main.html
-There you can easily view all the code and documentation in a browser of your choosing
+There you can easily view all the code and documentation in the browser of your choosing
 
 ## Future Extensibility
-Modifications to change the download URLS, the output file names, are very simple based on the code structure used here
-It will also be easy to extract data from more complex sources and/or load data in forms other than a csv by only modifying the behavior of specific functions
+Modifications to change the download URLS or the output file names are made very simple by the code structure used here.
+It will also be easy to extract data from more complex sources and/or load data in forms other than a csv by only modifying the behavior of specific functions.
