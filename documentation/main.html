@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>main API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>main</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from urllib.error import URLError
+import pandas as pd
+import io
+import requests
+
+
+# Here are the important URLS at the top, so they can easily be changed
+CONS_URL = &#34;https://als-hiring.s3.amazonaws.com/fake_data/2020-07-01_17%3A11%3A00/cons.csv&#34;
+CONS_EMAIL_URL = &#34;https://als-hiring.s3.amazonaws.com/fake_data/2020-07-01_17%3A11%3A00/cons_email.csv&#34;
+CONS_SUB_URL = &#34;https://als-hiring.s3.amazonaws.com/fake_data/2020-07-01_17%3A11%3A00/&#34; \
+               &#34;cons_email_chapter_subscription.csv&#34;
+
+
+def data_downloader(url: str) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    This data downloader offers a few benefits to simply calling pd.read_csv on its own
+    The first is that some ssl features are not supported in certain versions of pandas that
+    are supported in requests, so offering that as a fallback expands reliability. Second,
+    if all else fails, being able to see which URL is not working in the error message will help debugging
+
+    Args:
+        url (str): The url to gather data from
+    Return:
+        object: The dataframe from that url
+    &#34;&#34;&#34;
+    try:
+        return pd.read_csv(url)
+    except URLError:
+        try:
+            s = requests.get(url).content
+            return pd.read_csv(io.StringIO(s.decode(&#39;utf-8&#39;)))
+        except Exception as e:
+            print(f&#39;When fetching {url} caught {type(e)}: e&#39;)
+
+
+def extract_cons_data(cons_url: str, cons_email_url: str, cons_sub_url: str) -&gt; tuple:
+    &#34;&#34;&#34;
+    This simply routes the three urls into three downloaded dataframes using the data downloader.
+    The order is always cons, cons_email, cons_sub.
+
+    Args:
+        cons_url (str): The url to the cons data (unique id &#34;cons_id&#34;)
+        cons_email_url (str): The url to the cons email data (unique id &#34;cons_email_id&#34;)
+        cons_sub_url (str): The url to the cons subscription data
+    Return
+        object: cons, cons_email, cons_sub
+    &#34;&#34;&#34;
+    cons = data_downloader(cons_url)
+    cons_email = data_downloader(cons_email_url)
+    cons_sub = data_downloader(cons_sub_url)
+    return cons, cons_email, cons_sub
+
+
+def transform_cons_data(cons: pd.DataFrame, cons_email: pd.DataFrame, cons_sub: pd.DataFrame) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    This function starts by filtering cons_sub by &#39;chapter_id&#39; == 1.
+    It continues by filtering cons_email by &#39;is_primary&#39; == 1.
+    Then we one_to_one merge cons to cons_email by &#39;cons_id&#39;.
+    Then we one_to_one merge cons_all to cons_sub by &#39;cons_email_id&#39;.
+    After that there is basic renaming, imputing NaN is_unsub to False, and selecting columns
+
+    Args:
+        cons (object): the cons dataframe (unique id &#34;cons_id&#34;)
+        cons_email (object): the cons email dataframe (unique id &#34;cons_email_id&#34;)
+        cons_sub (object): cons subscription dataframe
+    Return
+        object: Dataframe with the columns - email, code, is_unsub, created_dt, updated_dt
+    &#34;&#34;&#34;
+    cons_sub = cons_sub[cons_sub[&#39;chapter_id&#39;] == 1]
+    cons_email = cons_email[cons_email[&#39;is_primary&#39;] == 1]
+    cons_all = cons.merge(cons_email, on=&#34;cons_id&#34;, validate=&#34;one_to_one&#34;, suffixes=(&#34;&#34;, &#34;_email&#34;))
+    cons_all = cons_all.merge(cons_sub, on=&#34;cons_email_id&#34;, validate=&#34;one_to_one&#34;, suffixes=(&#34;&#34;, &#34;_sub&#34;))
+    cons_all.rename(columns={&#39;create_dt&#39;: &#39;created_dt_orig&#39;}, inplace=True)
+    cons_all.rename(columns={&#39;source&#39;: &#39;code&#39;,
+                             &#39;isunsub&#39;: &#39;is_unsub&#39;,
+                             &#39;create_dt_email&#39;: &#39;created_dt&#39;,
+                             &#39;modified_dt_sub&#39;: &#39;updated_dt&#39;
+                             }, inplace=True)
+    cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].fillna(False)
+    cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].astype(bool)
+    people = cons_all[[&#34;email&#34;, &#34;code&#34;, &#34;is_unsub&#34;, &#39;created_dt&#39;, &#39;updated_dt&#39;]]
+    return people
+
+
+def aggregate_cons_data(transformed_cons: pd.DataFrame) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    This function takes the created_dt column in the input dataframe,
+    converts it to a date, groups by that date, counts the results, and formats the dataframe appropriately
+
+    Args:
+        transformed_cons (object): this should be a dataframe with at least the column &#34;created_dt&#34;
+    Return:
+        object: dataframe with the columns - acquisition_date, acquisitions
+    &#34;&#34;&#34;
+    simplified = transformed_cons[[&#34;created_dt&#34;]]
+    grouped = simplified.groupby(pd.to_datetime(simplified[&#39;created_dt&#39;]).dt.date).count()
+    grouped.rename(columns={&#39;created_dt&#39;: &#39;acquisitions&#39;}, inplace=True)
+    grouped.reset_index(inplace=True)
+    grouped.rename(columns={&#39;created_dt&#39;: &#39;acquisition_date&#39;}, inplace=True)
+    return grouped
+
+
+def load_cons_data(people: pd.DataFrame, aggregate: pd.DataFrame, people_file_name=&#34;people.csv&#34;,
+                   aggregate_file_name=&#34;aggregate.csv&#34;) -&gt; None:
+    &#34;&#34;&#34;
+    This function simple saves pandas data frames to the working directory.
+    However, in the future this could be extended to upload these files to a SQL database
+
+    Args:
+        people (object): This is a dataframe with the columns - email, code, is_unsub, created_dt, updated_dt
+        aggregate (object): This is a dataframe with the columns - acquisition_date, acquisitions
+        people_file_name (str): Defaults to &#34;people.csv&#34; saved in the cwd
+        aggregate_file_name (str): Defaults to &#34;aggregate.csv&#34; saved in the cwd
+    Return:
+         None
+    &#34;&#34;&#34;
+    people.to_csv(people_file_name, index=False)
+    aggregate.to_csv(aggregate_file_name, index=False)
+    return
+
+
+if __name__ == &#34;__main__&#34;:
+    input_dataframes = extract_cons_data(CONS_URL, CONS_EMAIL_URL, CONS_SUB_URL)
+    transformed_dataframe = transform_cons_data(*input_dataframes)
+    aggregated_dataframe = aggregate_cons_data(transformed_dataframe)
+    load_cons_data(transformed_dataframe, aggregated_dataframe)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="main.aggregate_cons_data"><code class="name flex">
+<span>def <span class="ident">aggregate_cons_data</span></span>(<span>transformed_cons: pandas.core.frame.DataFrame) -> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function takes the created_dt column in the input dataframe,
+converts it to a date, groups by that date, counts the results, and formats the dataframe appropriately</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>transformed_cons</code></strong> :&ensp;<code>object</code></dt>
+<dd>this should be a dataframe with at least the column "created_dt"</dd>
+</dl>
+<h2 id="return">Return</h2>
+<p>object: dataframe with the columns - acquisition_date, acquisitions</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def aggregate_cons_data(transformed_cons: pd.DataFrame) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    This function takes the created_dt column in the input dataframe,
+    converts it to a date, groups by that date, counts the results, and formats the dataframe appropriately
+
+    Args:
+        transformed_cons (object): this should be a dataframe with at least the column &#34;created_dt&#34;
+    Return:
+        object: dataframe with the columns - acquisition_date, acquisitions
+    &#34;&#34;&#34;
+    simplified = transformed_cons[[&#34;created_dt&#34;]]
+    grouped = simplified.groupby(pd.to_datetime(simplified[&#39;created_dt&#39;]).dt.date).count()
+    grouped.rename(columns={&#39;created_dt&#39;: &#39;acquisitions&#39;}, inplace=True)
+    grouped.reset_index(inplace=True)
+    grouped.rename(columns={&#39;created_dt&#39;: &#39;acquisition_date&#39;}, inplace=True)
+    return grouped</code></pre>
+</details>
+</dd>
+<dt id="main.data_downloader"><code class="name flex">
+<span>def <span class="ident">data_downloader</span></span>(<span>url: str) -> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This data downloader offers a few benefits to simply calling pd.read_csv on its own
+The first is that some ssl features are not supported in certain versions of pandas that
+are supported in requests, so offering that as a fallback expands reliability. Second,
+if all else fails, being able to see which URL is not working in the error message will help debugging</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>url</code></strong> :&ensp;<code>str</code></dt>
+<dd>The url to gather data from</dd>
+</dl>
+<h2 id="return">Return</h2>
+<p>object: The dataframe from that url</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def data_downloader(url: str) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    This data downloader offers a few benefits to simply calling pd.read_csv on its own
+    The first is that some ssl features are not supported in certain versions of pandas that
+    are supported in requests, so offering that as a fallback expands reliability. Second,
+    if all else fails, being able to see which URL is not working in the error message will help debugging
+
+    Args:
+        url (str): The url to gather data from
+    Return:
+        object: The dataframe from that url
+    &#34;&#34;&#34;
+    try:
+        return pd.read_csv(url)
+    except URLError:
+        try:
+            s = requests.get(url).content
+            return pd.read_csv(io.StringIO(s.decode(&#39;utf-8&#39;)))
+        except Exception as e:
+            print(f&#39;When fetching {url} caught {type(e)}: e&#39;)</code></pre>
+</details>
+</dd>
+<dt id="main.extract_cons_data"><code class="name flex">
+<span>def <span class="ident">extract_cons_data</span></span>(<span>cons_url: str, cons_email_url: str, cons_sub_url: str) -> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This simply routes the three urls into three downloaded dataframes using the data downloader.
+The order is always cons, cons_email, cons_sub.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cons_url</code></strong> :&ensp;<code>str</code></dt>
+<dd>The url to the cons data (unique id "cons_id")</dd>
+<dt><strong><code>cons_email_url</code></strong> :&ensp;<code>str</code></dt>
+<dd>The url to the cons email data (unique id "cons_email_id")</dd>
+<dt><strong><code>cons_sub_url</code></strong> :&ensp;<code>str</code></dt>
+<dd>The url to the cons subscription data</dd>
+<dt><strong><code>Return</code></strong></dt>
+<dd>object: cons, cons_email, cons_sub</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract_cons_data(cons_url: str, cons_email_url: str, cons_sub_url: str) -&gt; tuple:
+    &#34;&#34;&#34;
+    This simply routes the three urls into three downloaded dataframes using the data downloader.
+    The order is always cons, cons_email, cons_sub.
+
+    Args:
+        cons_url (str): The url to the cons data (unique id &#34;cons_id&#34;)
+        cons_email_url (str): The url to the cons email data (unique id &#34;cons_email_id&#34;)
+        cons_sub_url (str): The url to the cons subscription data
+    Return
+        object: cons, cons_email, cons_sub
+    &#34;&#34;&#34;
+    cons = data_downloader(cons_url)
+    cons_email = data_downloader(cons_email_url)
+    cons_sub = data_downloader(cons_sub_url)
+    return cons, cons_email, cons_sub</code></pre>
+</details>
+</dd>
+<dt id="main.load_cons_data"><code class="name flex">
+<span>def <span class="ident">load_cons_data</span></span>(<span>people: pandas.core.frame.DataFrame, aggregate: pandas.core.frame.DataFrame, people_file_name='people.csv', aggregate_file_name='aggregate.csv') -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function simple saves pandas data frames to the working directory.
+However, in the future this could be extended to upload these files to a SQL database</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>people</code></strong> :&ensp;<code>object</code></dt>
+<dd>This is a dataframe with the columns - email, code, is_unsub, created_dt, updated_dt</dd>
+<dt><strong><code>aggregate</code></strong> :&ensp;<code>object</code></dt>
+<dd>This is a dataframe with the columns - acquisition_date, acquisitions</dd>
+<dt><strong><code>people_file_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Defaults to "people.csv" saved in the cwd</dd>
+<dt><strong><code>aggregate_file_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Defaults to "aggregate.csv" saved in the cwd</dd>
+</dl>
+<h2 id="return">Return</h2>
+<p>None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_cons_data(people: pd.DataFrame, aggregate: pd.DataFrame, people_file_name=&#34;people.csv&#34;,
+                   aggregate_file_name=&#34;aggregate.csv&#34;) -&gt; None:
+    &#34;&#34;&#34;
+    This function simple saves pandas data frames to the working directory.
+    However, in the future this could be extended to upload these files to a SQL database
+
+    Args:
+        people (object): This is a dataframe with the columns - email, code, is_unsub, created_dt, updated_dt
+        aggregate (object): This is a dataframe with the columns - acquisition_date, acquisitions
+        people_file_name (str): Defaults to &#34;people.csv&#34; saved in the cwd
+        aggregate_file_name (str): Defaults to &#34;aggregate.csv&#34; saved in the cwd
+    Return:
+         None
+    &#34;&#34;&#34;
+    people.to_csv(people_file_name, index=False)
+    aggregate.to_csv(aggregate_file_name, index=False)
+    return</code></pre>
+</details>
+</dd>
+<dt id="main.transform_cons_data"><code class="name flex">
+<span>def <span class="ident">transform_cons_data</span></span>(<span>cons: pandas.core.frame.DataFrame, cons_email: pandas.core.frame.DataFrame, cons_sub: pandas.core.frame.DataFrame) -> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function starts by filtering cons_sub by 'chapter_id' == 1.
+It continues by filtering cons_email by 'is_primary' == 1.
+Then we one_to_one merge cons to cons_email by 'cons_id'.
+Then we one_to_one merge cons_all to cons_sub by 'cons_email_id'.
+After that there is basic renaming, imputing NaN is_unsub to False, and selecting columns</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cons</code></strong> :&ensp;<code>object</code></dt>
+<dd>the cons dataframe (unique id "cons_id")</dd>
+<dt><strong><code>cons_email</code></strong> :&ensp;<code>object</code></dt>
+<dd>the cons email dataframe (unique id "cons_email_id")</dd>
+<dt><strong><code>cons_sub</code></strong> :&ensp;<code>object</code></dt>
+<dd>cons subscription dataframe</dd>
+<dt><strong><code>Return</code></strong></dt>
+<dd>object: Dataframe with the columns - email, code, is_unsub, created_dt, updated_dt</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def transform_cons_data(cons: pd.DataFrame, cons_email: pd.DataFrame, cons_sub: pd.DataFrame) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    This function starts by filtering cons_sub by &#39;chapter_id&#39; == 1.
+    It continues by filtering cons_email by &#39;is_primary&#39; == 1.
+    Then we one_to_one merge cons to cons_email by &#39;cons_id&#39;.
+    Then we one_to_one merge cons_all to cons_sub by &#39;cons_email_id&#39;.
+    After that there is basic renaming, imputing NaN is_unsub to False, and selecting columns
+
+    Args:
+        cons (object): the cons dataframe (unique id &#34;cons_id&#34;)
+        cons_email (object): the cons email dataframe (unique id &#34;cons_email_id&#34;)
+        cons_sub (object): cons subscription dataframe
+    Return
+        object: Dataframe with the columns - email, code, is_unsub, created_dt, updated_dt
+    &#34;&#34;&#34;
+    cons_sub = cons_sub[cons_sub[&#39;chapter_id&#39;] == 1]
+    cons_email = cons_email[cons_email[&#39;is_primary&#39;] == 1]
+    cons_all = cons.merge(cons_email, on=&#34;cons_id&#34;, validate=&#34;one_to_one&#34;, suffixes=(&#34;&#34;, &#34;_email&#34;))
+    cons_all = cons_all.merge(cons_sub, on=&#34;cons_email_id&#34;, validate=&#34;one_to_one&#34;, suffixes=(&#34;&#34;, &#34;_sub&#34;))
+    cons_all.rename(columns={&#39;create_dt&#39;: &#39;created_dt_orig&#39;}, inplace=True)
+    cons_all.rename(columns={&#39;source&#39;: &#39;code&#39;,
+                             &#39;isunsub&#39;: &#39;is_unsub&#39;,
+                             &#39;create_dt_email&#39;: &#39;created_dt&#39;,
+                             &#39;modified_dt_sub&#39;: &#39;updated_dt&#39;
+                             }, inplace=True)
+    cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].fillna(False)
+    cons_all[&#39;is_unsub&#39;] = cons_all[&#39;is_unsub&#39;].astype(bool)
+    people = cons_all[[&#34;email&#34;, &#34;code&#34;, &#34;is_unsub&#34;, &#39;created_dt&#39;, &#39;updated_dt&#39;]]
+    return people</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="main.aggregate_cons_data" href="#main.aggregate_cons_data">aggregate_cons_data</a></code></li>
+<li><code><a title="main.data_downloader" href="#main.data_downloader">data_downloader</a></code></li>
+<li><code><a title="main.extract_cons_data" href="#main.extract_cons_data">extract_cons_data</a></code></li>
+<li><code><a title="main.load_cons_data" href="#main.load_cons_data">load_cons_data</a></code></li>
+<li><code><a title="main.transform_cons_data" href="#main.transform_cons_data">transform_cons_data</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
